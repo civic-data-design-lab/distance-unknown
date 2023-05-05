@@ -1,0 +1,6 @@
+#remove html file extension /stories.html
+# to /stories
+RewriteEngine On
+RewriteCond %{stories.html} !-d
+RewriteCond %{stories.html} !-f
+RewriteRule ^([^\.]+)$ $1.html [NC, L]
