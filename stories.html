@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en" style="width: 100%; height: 100%;">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="MIT Civic Data Design Lab: Ashley Louie, Julia Camacho, Jenny Chan, Jari Prachasartta">
+    <title>Migration Stories</title>
+
+    <link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.typekit.net/eqc7jzl.css">
+    
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
+    <link rel="stylesheet" type="text/css" href="./css/nav.css">
+    <link rel="stylesheet" type="text/css" href="./css/home.css">
+    <link rel="stylesheet" type="text/css" href="./css/about.css">
+    <link rel="stylesheet" type="text/css" href="./css/motivations.css">
+    <link rel="stylesheet" href="css/bubble_chart.css">
+    <link rel="stylesheet" type="text/css" href="./css/tooltip.css">
+    <link rel="stylesheet" type="text/css" href="./css/viz-buttons.css">
+    <script type="text/javascript" src="./js/jquery-3.6.0.min.js"></script>
+    <!-- <script type="text/javascript" src="./js/d3.v7.min.js"></script> -->
+
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script>
+        var d3v4 = window.d3;
+        window.d3 = null;
+    </script>
+    <script type="text/javascript" src="./js/d3.v7.min.js"></script>
+
+    <!-- SVG TRANSITION -->
+    <script type="text/javascript" src="./js/motivationsTransition.js"></script>
+
+
+    <script type="text/javascript" src="./js/tooltip.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-annotation/2.5.1/d3-annotation.min.js" integrity="sha512-iBAeBWWWFb8HqSBcrqcz98iIpuVH1la39dEYHtyQ/pGpeCQTQVvLJOWAuhv2Q7JSHp9k7hWA7sGxU3hHJe+tFg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+
+<body>
+    
+    <div id="page-content" class="content-block solid-white d-flex flex-column">
+        <!-- HOME TAB LAYOUT -->
+        <div id="home-container" class="flex-grow-1 h-100 p-4 p-md-5" style="display: none;">
+            <div id="home-content" class="h-100 d-flex flex-column">
+                <div class="h-75">
+                    <h1>WHY MIGRATE?</h1>
+                    <p class="col-10 col-md-11">
+                        Each tapestry fragment represents one migrant from El Salvador, Guatemala, or Honduras, with data from a WFP survey in 2021. The colors represent the migrant's primary reasons for migrating: <mark id="blue">economic,</mark> <mark id="yellow">quality of life,</mark> <mark id="purple">security,</mark> <mark id="orange">reunification,</mark> and <mark id="teal">climate change</mark>. The combined squares create a tapestry of migration motivations.
+                    </p>
+                    <div class="w-100 mt-3 mt-lg-8 mb-3 mb-lg-8">
+                        <img id="square-colors" src="./img/square-module/square-colors.png" alt="Diagram of tapestry fragment colors">
+                    </div>
+                </div>
+                <div class="h-20 mb-2">
+                    <h1>LEARN MORE</h1>
+                    <div class="col-10 d-flex">
+                        <div class="col-3 flex-shrink-1">
+                            <img id="img-scan-module" src="./img/square-module/square-module-outline.svg" alt="Data tapestry fragment">
+                        </div>
+                        <div class="col-9 flex-grow-1 ps-1 ms-3">
+                            <p>Scan a fragment of the data tapestry below to learn about a migrant.</p>
+                        </div>
+                    </div>
+                        <!-- <div id="scan-image" class="col-5">
+                            
+                        </div> -->
+                </div>
+            </div>
+        </div><!-- close home-container -->
+
+        <div id="rotate-box">
+            <div id="rotate-warning" class="alert alert-warning alert-dismissible fade show" role="alert">
+                <strong id="warning-text">Adjust or rotate your screen to portrait mode.</strong>
+                <!-- <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> -->
+            </div>
+            <div id="black-box"></div>
+        </div>
+        <!-- VISUALIZATIONS TABS (MOTIVATIONS & COST) LAYOUTS -->
+        <div id="viz-container" class="w-100 px-0">
+            <div class="position-relative h-100 d-flex flex-column">
+                <div id="viz-content" class="container-lg px-xl-5 align-items-center h-100">
+                    <!-- MOTIVATIONS VIZ -->
+                    <div id="motivations-container" class="h-100 container-fluid">
+                        <div id="motivations-content" class="d-flex flex-column px-1 px-md-3 pt-lg-5">
+                            <div id="motivations-heading" class="mt-3 mt-md-5">
+                                Visualization of migrant motivations
+                            </div>
+                            <!-- FRAME FOR D3 VISUALIZATION -->
+                            <div id="frame-motivations" class=""></div>
+                            
+                            <!-- D3 HOVER TOOLTIP TEMPLATE -->
+                            <div class="tooltip tooltip-motivs template">
+                                <div class="side-color"></div>
+                                <p>Motivation for Migrating</p>
+                                <h3 class="text-color">
+                                    <span class="label-motiv-pct">90</span>%
+                                    <span class="label-motiv text-uppercase">Economic</span>
+                                </h3>
+                                <span class="text-hh text-color">of
+                                    <span class="label-hh">surveyed</span> households
+                                </span>
+                                <div class="row mt-1">
+                                    <div class="col-left">
+                                        <p>Reason for Migrating</p>
+                                        <span class="label-motiv-detail text-label">Search for a better job, salary or working conditions, lack of money to buy food, lack of money to cover basic needs</span>
+                                    </div>
+                                    <div class="col-right">
+                                        <p>Origin Country</p>
+                                        <span class="label-country text-label">El Salvador</span>
+                                    </div>
+                                </div>
+                            </div><!-- close tooltip -->
+
+                            <!-- BUTTONS FOR MOTIVATIONS VIZ -->
+                            <div id="buttons-motivations" class="position-relative viz-btns row d-flex flex-row mb-3">
+                                <div class="sort-by col-3 px-0">
+                                    <p class="m-0">Touch to<br>sort data:</p>
+                                </div>
+                                <div class="col-3 px-0">
+                                    <button type="button" id="btn-motivs"
+                                            class="btn btn-sm p-0">Motivations</button>
+                                </div>
+                                <div id="btn-center" class="col-3 px-0">
+                                    <button type="button" id="btn-income"
+                                            class="btn btn-sm p-0">Income Level</button>
+                                </div>
+                                <div class="col-3 px-0">
+                                    <button type="button" id="btn-cari" class="btn btn-sm p-0">Food Security</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <!-- COST VIZ -->
+                    <!-- frame for d3 visualization -->
+                    <div id="cost-container" class="h-100 container-fluid" style="display: none;">
+                        <div id="cost-content" class="d-flex flex-column px-1 px-md-3 pt-lg-5">
+                            <div id="costs-heading" class="mt-3 mt-md-5 mb-3">
+                                The cost of migration through different routes
+                            </div>
+                            <!-- FRAME FOR D3 VISUALIZATION -->
+                            <div id="frame-cost" class=""></div>
+                            
+                            <!-- D3 HOVER TOOLTIP TEMPLATE -->
+                            <div class="tooltip tooltip-cost mb-5 mb-md-0 template">
+                                <div class="side-color"></div>
+                                <div class="d-flex mb-1">
+                                    <div class="col-left">
+                                        <p class="text-label-onemigrant mb-1">ONE MIGRANT</p>
+                                        <p>From <span class="label-country text-label">El Salvador</span> Spent</p> 
+                                    </div>
+                                    <div class="col-right d-flex flex-column justify-content-end">                  
+                                        <h3 class="label-cost text-color">$8,500</h3>
+                                    </div>
+                                </div>
+                                <h3 class="label-pathway text-color">Irregular channel on one's own or with a caravan</h3>
+                            </div>
+
+                            <!-- BUTTONS FOR COST VIZ -->
+                            <div id="buttons-cost" class="position-relative viz-btns row d-flex flex-row mb-3 w-100">
+                                <p id="timeout-note" class="position-absolute px-0 inactive">Please wait until animation is complete before sorting the data.</p>
+                                <div class="sort-by col-3 px-0">
+                                    <p>Touch to<br>sort data:</p>
+                                </div>
+                                <!-- <div class="col-10 px-0"> -->
+                                    <!-- <div class="row"> -->
+                                        <!-- <div class="col-3 px-0">
+                                            <button type="button" id="all" class="btn btn-sm active">Total Cost</button>
+                                        </div> -->
+                                <div class="col-3 px-0">
+                                    <button type="button" id="channel" class="btn btn-sm p-0">Migration Channel</button>
+                                </div>
+                                <div class="col-3 px-0">
+                                    <button type="button" id="country" class="btn btn-sm p-0">Origin Country</button>
+                                </div>
+                                <div class="col-3 px-0">
+                                    <button type="button" id="bee" class="btn btn-sm p-0">Debt Duration</button>
+                                </div>
+                                    <!-- </div> -->
+                                <!-- </div> -->
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- close viz-content -->
+            </div>
+        </div><!-- close viz-container -->
+        <!-- CAROUSEL FOR NARRATIVES TEXT AND BUTTONS -->
+        <div id="carousel" class="position-fixed row w-100 m-0 motivations">
+                            <div id="carousel-slides-motiv" class="position-relative bottom-0 carousel slide" data-interval="false" data-ride="carousel">
+                                <div class="carousel-inner h-100">
+                                    <div id="narrative-1" class="carousel-item active">
+                                    <div class="carousel-caption">
+                                        <div class="m_narrative_1">
+                                            <span class="migrant-name">Name</span> (<span class="migrant-age">Age</span>) migrated from <span class="migrant-country">Country</span> <span class="migrant-motivation">due to several reasons</span>.
+                                        </div>
+                                    </div>
+                                    </div>
+                                    <div id="narrative-2" class="carousel-item">
+                                    <div class="carousel-caption">
+                                        <div class="m_narrative_2">
+                                            <span class="migrant-motiv-narrative">narrative3</span>
+                                        </div>
+                                    </div>
+                                    </div>
+                                    <div id="narrative-3" class="carousel-item">
+                                    <div class="carousel-caption">
+                                        <div class="c_narrative_1">
+                                            <span class="migrant-name">Name</span> spent $<span class="migrant-cost">Cost</span> (USD) to migrate <span class="migrant-channel">through a Channel</span>.
+                                        </div>
+                                    </div>
+                                    </div>
+                                    <div id="narrative-4" class="carousel-item">
+                                    <div class="carousel-caption">
+                                        <div class="c_narrative_2">
+                                            <span class="migrant-cost-narrative">narrative4</span>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                                <a class="carousel-control carousel-control-prev" href="#carousel-slides-motiv" role="button" data-slide="prev">
+                                    <span class="carousel-control-prev-icon position-relative" aria-hidden="true"></span>
+                                </a>
+                                <a class="carousel-control carousel-control-next" href="#carousel-slides-motiv" role="button" data-slide="next">
+                                    <span class="carousel-control-next-icon position-relative" aria-hidden="true"></span>
+                                </a>
+                            </div>
+        
+                                            <!-- SCAN FRAGMENT REMINDER -->
+                            <div class="scan-another position-absolute start-0 bottom-0 col-6 mb-1 mb-md-4 ps-5">
+                                <div class="d-flex">
+                                    <div class="me-4">
+                                        <img src="./img/square-module/square-module-outline.svg" alt="Data tapestry fragment outline">
+                                    </div>
+                                    <div class="position-relative flex-grow-1">
+                                        <p class="position-absolute start-0 bottom-0 mb-0"><b>Scan a tapestry fragment below</b> <br>to learn about a different migrant.</p>
+                                    </div>
+                                </div>
+                            </div>
+        
+                            <!-- CAROUSEL PROGRESS DOTS -->
+                            <div class="carousel-progress position-absolute start-50 bottom-0 translate-middle-x b-1 mb-md-2 row">
+                                <span id="nav-dot-1" class="nav-dot m-2 p-0 active"></span>
+                                <span id="nav-dot-2" class="nav-dot m-2 p-0"></span>
+                                <span id="nav-dot-3" class="nav-dot m-2 p-0"></span>
+                                <span id="nav-dot-4" class="nav-dot m-2 p-0"></span>
+                            </div>
+        
+        </div><!-- close carousel -->
+        <!-- ABOUT TAB LAYOUT -->
+        <div id="about-container" class="position-relative flex-grow-1 p-4 p-md-5" style="display: none;">
+            <div class="col-10 col-lg-11">
+                <h2 class="mb-3 mb-lg-5">About the Data</h2>
+                <p class="mb-3 mb-lg-5">In 2021, the World Food Program interviewed 4,998 households in Guatemala, Honduras, and El Salvador and asked them questions related to food security but also used the opportunity to ask whether someone from their household migrated and related questions about the motivations, costs, economic impact of migration.</p>
+                <p>In 2022, the World Food Program provided internet to migrants making the passage starting in Columbia’s Dairen Jungle and making their way through the Central American on their way to Mexico and the United States. In order to receive internet, the migrants were asked questions about their home country, their path to Columbia, their preparations, cost and the risks they had to take to arrive on the path. This rare data set include 2,109 migrants from 43 countries all over the world.</p>
+            </div>
+
+            <!-- SCAN FRAGMENT REMINDER -->
+            <div class="scan-another position-absolute start-0 bottom-0 col-6 col-md-3 mb-1 mb-md-3 ps-3">
+                <div class="d-flex">
+                    <div class="col-2 col-md-3 me-2">
+                        <img src="./img/square-module/square-module-outline.svg" alt="Data tapestry fragment outline">
+                    </div>
+                    <div class="position-relative flex-grow-1">
+                        <p class="position-absolute start-0 top-50 translate-middle-y mb-0">Scan below to learn about a migrant.</p>
+                    </div>
+                </div>
+            </div>
+        </div><!-- close about-container -->
+
+        <!-- NAV TABS -->
+        <div id="nav-tabs" class="fixed-bottom row w-100 m-0">
+                <button id="tab-home" class="col btn btn-sm p-1 p-lg-2"
+                    onclick="toggle_home_on()">Home</button>
+                <button id="tab-motivations" class="col btn btn-sm p-1 p-lg-2 active"
+                    onclick="toggle_motivation_on()">Motivations</button>
+                <button id="tab-costs" class="col btn btn-sm p-1 p-lg-2"
+                    onclick="toggle_cost_on()">Costs</button>
+                <button id="tab-about" class="col btn btn-sm p-1 p-lg-2"
+                    onclick="toggle_about_on()">About</button>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="./js/popper.min.js"></script>
+    <script type="text/javascript" src="./js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="./js/script.js"></script>
+    <script type="text/javascript" src="./js/motivations.js"></script>
+    <script type="text/javascript" src="./js/nav.js"></script>
+    <script type="text/javascript" src="./js/bubble_chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js" integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK" crossorigin="anonymous"></script>
+</body>
+
+</html>

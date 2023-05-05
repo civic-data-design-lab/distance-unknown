@@ -1,0 +1,193 @@
+/* VIZ SORT BUTTONS */
+.sort-by {
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-align: left;
+    line-height:0.85rem;
+}
+
+/* MTWTF DESIGN */
+/* #btn-motivs.active, #btn-income.active, #btn-cari.active,
+#channel.active, #country.active, #bee.active {
+    border: 2px solid black;
+} */
+
+.viz-btns {
+    position: relative;
+    bottom: 0;
+    display: flex;
+    flex-direction: row;
+    margin-left:0;
+    border-radius: 0px ;
+}
+
+.viz-btns .btn {
+    width: 100%;
+    font-weight: 500;
+    font-size: 0.55rem;
+    height: 75%;
+}
+
+/* MOTIVATIONS BUTTONS */
+#buttons-motivations {
+    width: 100%;
+}
+#buttons-motivations .btn {
+    color: #1540C4;
+    background-color: #fff;
+    border: solid 2px #1540C4;
+    border-radius: 0px;
+    line-height:0.75rem;
+}
+#buttons-motivations .btn.active {
+    color: #fff;
+    background-color: #1540C4;
+}
+#buttons-motivations #btn-income {
+    border-right: none;
+    border-left: none;
+}
+
+/* COST BUTTONS */
+#buttons-cost .btn {
+    color: #d2a214;
+    background-color: #fff;
+    border: solid 1.75px #d2a214;
+    border-radius: 0px;
+}
+#buttons-cost .btn.active {
+    color: #fff;
+    background-color: #d2a214;
+}
+#buttons-cost #country {
+    border-right: none;
+    border-left: none;
+}
+
+/* COST BUTTONS TIMEOUT */
+#timeout-note {
+    left: 0px;
+    top: -4rem;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: all 3s linear;
+}
+#timeout-note.inactive {
+    display: none;
+}
+
+/* RESPONSIVE DESIGN */
+/*mobile (320px-425px)*/
+@media (min-width: 320px) and (max-width: 425px) {
+    .viz-btns .btn {
+        font-size: 0.58rem;
+    }
+
+    .sort-by {
+        font-size: 0.75rem;
+    }
+}
+/* Small devices (425px and up) */
+@media (min-width: 425px) and (max-width: 633px) {
+    .viz-btns .btn-sm {
+        font-size: 0.65rem;
+    }
+
+    .sort-by {
+        font-size: 0.75rem;
+    }
+}
+/* Medium devices (tablets, 633px and up) */
+@media (min-width: 633px) and (max-width: 768px) {
+    .viz-btns .btn-sm {
+        font-size: 0.85rem;
+    }
+
+    #btn-motivs, #btn-cari, #btn-income {
+        height: 2.25rem;
+    }
+
+
+    .sort-by {
+        font-size: 1rem;
+        line-height: 0.95rem;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 992px) {
+    .viz-btns .btn-sm {
+        font-size: 1.1rem;
+    }
+
+    #btn-motivs, #btn-cari, #btn-income {
+        height: 2.5rem;
+    }
+
+    .sort-by {
+        font-size: 1.1rem;
+        line-height: 1.2rem;
+    }
+
+}
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+    .viz-btns .btn-sm {
+        font-size: 1.3rem;
+        line-height: 1.8rem;
+    }
+
+    #btn-motivs, #btn-cari, #btn-income  {
+        height: 3rem;
+    }
+
+    .sort-by {
+        font-size: 1.3rem;
+        line-height: 1.8rem;
+    }
+}
+
+@media (max-aspect-ratio: 2/3) {
+    #buttons-motivations .btn {
+        line-height: normal;
+        height: 100%;
+    }
+}
+
+@media (max-aspect-ratio: 3/4) and (min-width: 768px) {
+    #carousel {
+        height: 300px;
+    }
+
+    #carousel-slides-motiv {
+        height: 300px;
+    }
+}
+
+@media (max-aspect-ratio: 3/4) and (min-width: 992px) {
+    #carousel {
+        height: 400px;
+    }
+
+    .sort-by {
+        font-size: 1.7rem;
+    }
+    .viz-btns .btn-sm {
+        font-size: 1.7rem;
+    }
+
+    #carousel-slides-motiv {
+        height: 400px;
+    }
+
+}
+
+@media (max-aspect-ratio: 2/3) and (min-width: 992px) {
+    #carousel {
+        height: 480px;
+    }
+
+    #carousel-slides-motiv {
+        height: 480px;
+    }
+
+}
