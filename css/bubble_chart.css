@@ -251,3 +251,13 @@ margin-top:3rem;}
         max-width: 120vh;
     }
 }
+
+/* EXHIBITION SCREEN 720 x 1240 */
+@media (min-height: 720px) {
+  #costs-heading {
+    padding-top: 2rem;
+  }
+  #buttons-cost {
+    margin-top: 4.3rem;
+  }
+}

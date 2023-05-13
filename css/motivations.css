@@ -48,7 +48,7 @@ body{
 }
 
 #frame-motivations {
-    padding-right: 5vh;
+    /* padding-right: 5vh; */
     overflow: scroll;
 }
 
@@ -438,7 +438,6 @@ a.btn.btn-sm {
     }
 }
 
-
 @media (orientation: landscape) {
     #viz-container {
         height:100%;
@@ -449,4 +448,11 @@ a.btn.btn-sm {
         overflow: scroll;
     }
 
+}
+
+/* EXHIBITION SCREEN 720 x 1240 */
+@media (min-height: 720px) {
+  #motivations-heading {
+    padding-top: 2rem;
+  }
 }

@@ -12,9 +12,9 @@
     bottom:34px;
 }
 
-#carousel-slides-motiv {
-    height:200px;
-}
+/* #carousel-slides {
+    min-height:200px;
+} */
 
 #carousel.motivations {
     background-color: #28448c;
@@ -196,7 +196,7 @@
         bottom:80px;
     }
 
-    #carousel-slides-motiv {
+    #carousel-slides {
         height:400px;
     }
 }
@@ -246,4 +246,18 @@
     #carousel {
         bottom:80px;
     }
+}
+
+/* EXHIBITION SCREEN 720 x 1240 */
+@media (min-height: 720px) {
+  #carousel {
+    height: 30%;
+    bottom: 3rem;
+  }
+  #nav-tabs {
+    height: 3rem;
+  }
+  .carousel-progress {
+    margin-bottom: 1rem;
+  }
 }

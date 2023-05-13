@@ -102,3 +102,13 @@
         width: 80%;
     }
 }
+
+/* EXHIBITION SCREEN 720 x 1240 */
+@media (min-height: 720px) {
+  #about-content {
+    padding: 2rem;
+  }
+  #about-content h2 {
+    margin-bottom: 2rem!important;
+  }
+}
