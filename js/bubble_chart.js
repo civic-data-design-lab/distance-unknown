@@ -570,13 +570,13 @@ var financeData3 = d3v4.keys(financeTitleX3);
     tooltipContent.children().appendTo("#tt-cost");
 
     // responsive screenwidths
-    if (winWidth > 768) {
+    if (winWidth >= 720) {
         tooltip.showTooltip(event);
         setTimeout(() => {
             if ($("#tt-cost").css("display") == "block") {
                 $("#tt-cost").fadeOut();
             }
-        }, 3000)
+        }, 10000)
     }
     else {
         $("#tt-cost").css({'opacity': 1.0, 'top': '1rem', 'left': '50%'});
@@ -1359,7 +1359,7 @@ $("#buttons-cost").on("click", function() {
 
 // window resize
 $(window).resize(function() {
-    if (winWidth > 768) {
+    if (winWidth >= 720) {
         $("#tt-cost").css('opacity', 0.0);
     }
     else {
