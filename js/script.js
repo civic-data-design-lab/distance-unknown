@@ -128,6 +128,12 @@ $("#shortcut a").on("click", function() {
     }
 });
 
-$(document).ready(function () {
+// disable right-click
+document.addEventListener('contextmenu', event => 
+    {
+      event.preventDefault()
+    });
+
+// $(document).ready(function () {
     
-})
+// })
