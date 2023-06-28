@@ -1,14 +1,14 @@
 let idleTime = 0;
 const navTabs = ['home', 'motivations', 'costs', 'about'];
 let currentTab = 'motivations';
+const migrantIds = [623, 4614, 4124, 4262, 351, 43,1278, 495, 4725, 3833, 3839, 36, 1249, 1564, 2577, 1052, 477, 1000, 1261, 3734];
 
 window.onload = function() {
     const id_with_hash = window.location.hash
 
     if (id_with_hash.length != 0) {
-        console.log("item has been scanned")
+        console.log("item #" + id_with_hash + " has been scanned");
     }
-
     else {
         const defaultText = "Scan a fragment of the data tapestry <br/>to learn about a migrant."
         $(".m_narrative_1").html(defaultText); // narrative 1 text content
