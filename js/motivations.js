@@ -256,7 +256,7 @@ const scale = d3.scaleLinear()
     .range([0, sqLen * numPerRow]);
 
 // load csv data and callback function
-const dataset = d3.csv("./data/motivations.csv", d3.autoType)
+const dataset = d3.csv("./data/motivations_tapestry.csv", d3.autoType)
     .then(function(data) {
         if (!keys.length) {
             keys = data.columns;
