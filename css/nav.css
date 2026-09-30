@@ -233,7 +233,7 @@
     #nav-tabs {
         height:54px;
     }
-    #carousel {
+    #carousel, #about-scan {
         bottom:54px;
     }
 }
@@ -243,7 +243,7 @@
         height:80px;
     }
 
-    #carousel {
+    #carousel, #about-scan {
         bottom:80px;
     }
 }
@@ -252,10 +252,12 @@
 @media (min-height: 720px) {
   #carousel {
     height: 30%;
-    bottom: 3rem;
+  }
+  #carousel, #about-scan {
+    bottom: 5rem;
   }
   #nav-tabs {
-    height: 3rem;
+    height: 5rem;
   }
   .carousel-progress {
     margin-bottom: 1rem;

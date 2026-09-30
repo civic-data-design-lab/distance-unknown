@@ -52,7 +52,7 @@
 #buttons-cost .btn {
     color: #d2a214;
     background-color: #fff;
-    border: solid 1.75px #d2a214;
+    border: solid 2px #d2a214;
     border-radius: 0px;
 }
 #buttons-cost .btn.active {
