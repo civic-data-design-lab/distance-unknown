@@ -741,6 +741,9 @@ function display(error, data) {
 
       // allow button sorting after line plotted
       $("#buttons-cost .btn").css("pointer-events", "auto");
+    } else {
+      // allow button sorting upon initial load when no migrant ID selected yet
+      $("#buttons-cost .btn").css("pointer-events", "auto");
     }
 
   }, 10000);
